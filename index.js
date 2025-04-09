@@ -33,24 +33,31 @@ search.addEventListener('click', () => {
             const umidade = document.querySelector('.weather-details .umidade span');
             const vento = document.querySelector('.weather-details .vento span');
 
-            switch (json.weather[0].main) {
-                case 'Clear':
-                    imagens.src = 'imagens/clear.png';
+            // Log para depuração (opcional)
+            console.log('Condição climática:', json.weather[0].main);
+
+            switch (json.weather[0].main.toLowerCase()) {
+                case 'clear':
+                    imagens.src = 'imagens/sol.png';
                     break;
-                case 'Rain':
-                    imagens.src = 'imagens/rain.png';
+                case 'rain':
+                case 'drizzle':
+                case 'thunderstorm':
+                    imagens.src = 'imagens/chuva.png';
                     break;
-                case 'Snow':
-                    imagens.src = 'imagens/snow.png';
+                case 'snow':
+                    imagens.src = 'imagens/nevoa.png';
                     break;
-                case 'Clouds':
-                    imagens.src = 'imagens/clouds.png';
+                case 'clouds':
+                    imagens.src = 'imagens/nuvens.png';
                     break;
-                case 'Haze':
-                    imagens.src = 'imagens/mist.png';
+                case 'mist':
+                case 'haze':
+                case 'fog':
+                    imagens.src = 'imagens/nevoa.png';
                     break;
                 default:
-                    imagens.src = '404.png';
+                    imagens.src = 'imagens/404.png';
             }
 
             temperatura.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
